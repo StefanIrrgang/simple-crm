@@ -1,6 +1,8 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { User } from 'src/models/user.class';
-import { Firestore } from '@angular/fire/firestore';
+import { Firestore, collectionData, collection, doc, setDoc, addDoc } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-dialog-add-user',
@@ -13,21 +15,36 @@ export class DialogAddUserComponent implements OnInit {
 
   user = new User();
   birthDate!: Date;
+  loading = false;
 
-  constructor() {}
-    ngOnInit(): void {
+  constructor(public dialogRef: MatDialogRef<DialogAddUserComponent>) { }
+  ngOnInit(): void {
 
-    }
-  
+  }
+
   saveUser() {
+    this.loading = true;
     this.user.birthDate = this.birthDate.getTime();
     console.log('Current user is ', this.user);
 
-    this.firestore
-    .collection('users')
-    .add(this.user)
-    .then((result: any) => {
-      console.log('Adding user finished', result);
-    });
+    const userJson = this.user.toJSON();
+
+    const usersCollection = collection(this.firestore, 'users');
+
+    addDoc(usersCollection, userJson)
+      .then((result) => {
+        console.log('Adding user finished', result);
+
+        setTimeout(() => {
+          this.user = new User();
+          this.birthDate = new Date();
+          this.loading = false;
+        }, 200);
+
+        this.dialogRef.close();
+      })
+      .catch((error) => {
+        console.error('Error adding user', error);
+      });
   }
 }
