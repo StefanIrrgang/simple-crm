@@ -6,6 +6,34 @@
 
 .user-table {
     width: 100%;
+    border-collapse: collapse;
+
+    tr {
+        border-bottom: 1px solid lightgray;
+        &:first-child {
+            cursor: unset;
+            &:hover {
+                background-color: unset;
+            }
+        }
+
+        &:last-child {
+            border-bottom: 0;
+        }
+
+        td {
+            height: 48px;
+        }
+
+        cursor: pointer;
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.04);
+        }
+    }
+
+
+
     th {
         color: rgb(122, 117, 117);
         font-size: 14px;
@@ -13,3 +41,4 @@
         text-align: start;
     }
 }
+
