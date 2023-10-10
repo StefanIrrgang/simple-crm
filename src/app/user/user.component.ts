@@ -2,7 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.component';
 import { User } from 'src/models/user.class';
-import { Firestore, doc, addDoc, getFirestore, collection, getDocs, query, where, QuerySnapshot, DocumentSnapshot, onSnapshot, collectionData } from '@angular/fire/firestore';
+import { Firestore, getFirestore, collection, query, onSnapshot, collectionData } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -30,14 +30,15 @@ export class UserComponent implements OnInit {
 
     onSnapshot(q, (querySnapshot) => {
       console.log('Received changes from DB ', querySnapshot);
-
+    
       this.allUsers = [];
-
+    
       querySnapshot.forEach((doc) => {
-        const userData = doc.data() as User;
-        this.allUsers.push(userData);
-        // console.log('User data: ', userData);
+        const userData = doc.data();
+        const userWithId = new User({ id: doc.id, ...userData });
+        this.allUsers.push(userWithId);
       });
+    
       console.log('All users:', this.allUsers);
     });
   }
