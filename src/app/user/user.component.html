@@ -7,20 +7,14 @@
       <th>City</th>
       <th>Street</th>
     </tr>
-    <tr>
-      <td>User1</td>
-      <td>mail1@user.de</td>
-      <td>10/4/1999</td>
-      <td>Berlin</td>
-      <td>Main Street</td>
+    <tr *ngFor="let user of allUsers">
+      <td>{{ user.firstName }} {{ user.lastName }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ formatBirthDate(user.birthDate) }}</td>
+      <td>{{ user.city }}</td>
+      <td>{{ user.street }}</td>
     </tr>
-    <tr>
-      <td>User2</td>
-      <td>mail222@user.de</td>
-      <td>12/6/1966</td>
-      <td>Hamburg</td>
-      <td>New Street</td>
-    </tr>
+    
 
   </table>
 </mat-card>
