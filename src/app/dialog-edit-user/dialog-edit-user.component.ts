@@ -3,6 +3,8 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { User } from 'src/models/user.class';
 import { Firestore, collectionData, collection, doc, setDoc, addDoc, updateDoc } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { EventService } from '../event.service';
+
 
 @Component({
   selector: 'app-dialog-edit-user',
@@ -18,7 +20,7 @@ export class DialogEditUserComponent implements OnInit {
   loading = false;
   userId!: string;
 
-  constructor(public dialogRef: MatDialogRef<DialogEditUserComponent>) { }
+  constructor(public dialogRef: MatDialogRef<DialogEditUserComponent>, private eventService: EventService) { }
 
   ngOnInit(): void {
 
@@ -29,9 +31,10 @@ export class DialogEditUserComponent implements OnInit {
     try {
       const userDocRef = doc(this.firestore, 'users', this.userId);
       await updateDoc(userDocRef, this.user.toJSON());
-      console.log('User updated successfully');
+      // console.log('User updated successfully');
       this.loading = false;
       this.dialogRef.close();
+      this.eventService.triggerUserUpdated();
     } catch (error) {
       console.error('Error updating user:', error);
     }

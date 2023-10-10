@@ -6,6 +6,7 @@ import { User } from 'src/models/user.class';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogEditAddressComponent } from '../dialog-edit-address/dialog-edit-address.component';
 import { DialogEditUserComponent } from '../dialog-edit-user/dialog-edit-user.component';
+import { EventService } from '../event.service';
 
 @Component({
   selector: 'app-user-detail',
@@ -19,14 +20,17 @@ export class UserDetailComponent implements OnInit {
   userId = '';
   user: User = new User();
 
-  constructor(private route: ActivatedRoute, public dialog: MatDialog) { }
+  constructor(private route: ActivatedRoute, public dialog: MatDialog, private eventService: EventService) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(paramMap => {
       this.userId = paramMap.get('id') || '';
-      console.log('GOT ID', this.userId);
+      // console.log('GOT ID', this.userId);
       this.getUser();
-    })
+    });
+    this.eventService.userUpdated$.subscribe(() => {
+      this.getUser();
+    });
   }
 
   async getUser() {
@@ -36,9 +40,9 @@ export class UserDetailComponent implements OnInit {
     if (userSnapshot.exists()) {
       const userData = userSnapshot.data();
       this.user = new User(userData);
-      console.log('Retrieved user', this.user)
+      // console.log('Retrieved user', this.user)
     } else {
-      console.log('User not found');
+      // console.log('User not found');
     }
   }
 

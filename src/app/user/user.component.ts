@@ -29,7 +29,7 @@ export class UserComponent implements OnInit {
     this.users = collectionData(q, { idField: 'id' }) as Observable<User[]>;
 
     onSnapshot(q, (querySnapshot) => {
-      console.log('Received changes from DB ', querySnapshot);
+      // console.log('Received changes from DB ', querySnapshot);
     
       this.allUsers = [];
     
@@ -39,7 +39,7 @@ export class UserComponent implements OnInit {
         this.allUsers.push(userWithId);
       });
     
-      console.log('All users:', this.allUsers);
+      // console.log('All users:', this.allUsers);
     });
   }
 
