@@ -1,0 +1,26 @@
+<p>Companies</p>
+<mat-card class="p-16">
+    <table class="company-table">
+      <tr>
+        <th>Company</th>
+        <th>Email</th>
+        <th>ZipCode</th>
+        <th>City</th>
+        <th>Street</th>
+      </tr>
+      <tr *ngFor="let company of allCompanies" [routerLink]="['/company/' + company.id]">
+        <td>{{ company.name }}</td>
+        <td>{{ company.email }}</td>
+        <td>{{ company.zipcode }}</td>
+        <td>{{ company.city }}</td>
+        <td>{{ company.street }}</td>
+      </tr>
+      
+  
+    </table>
+  </mat-card>
+  
+  <button (click)="openDialog()" class="add-company-btn" mat-fab color="primary" matTooltip="Add company"
+    matTooltipPosition="above">
+    <mat-icon>add</mat-icon>
+  </button>

@@ -27,6 +27,14 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { DialogEditAddressComponent } from './dialog-edit-address/dialog-edit-address.component';
 import { DialogEditUserComponent } from './dialog-edit-user/dialog-edit-user.component';
+import { OrganizationsComponent } from './organizations/organizations.component';
+import { LeadsComponent } from './leads/leads.component';
+import { ProjectsComponent } from './projects/projects.component';
+import { EmailsComponent } from './emails/emails.component';
+import { OpportunitiesComponent } from './opportunities/opportunities.component';
+import { CalendarComponent } from './calendar/calendar.component';
+import { ReportsComponent } from './reports/reports.component';
+import { DialogAddCompanyComponent } from './dialog-add-company/dialog-add-company.component';
 
 
 
@@ -38,7 +46,15 @@ import { DialogEditUserComponent } from './dialog-edit-user/dialog-edit-user.com
     DialogAddUserComponent,
     UserDetailComponent,
     DialogEditAddressComponent,
-    DialogEditUserComponent
+    DialogEditUserComponent,
+    OrganizationsComponent,
+    LeadsComponent,
+    ProjectsComponent,
+    EmailsComponent,
+    OpportunitiesComponent,
+    CalendarComponent,
+    ReportsComponent,
+    DialogAddCompanyComponent
   ],
   imports: [
     BrowserModule,

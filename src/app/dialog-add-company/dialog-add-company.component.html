@@ -1,0 +1,39 @@
+<div class="dialog-container">
+    <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+    <h1 mat-dialog-title>Add company</h1>
+    <div mat-dialog-content>
+        <div>
+            <mat-form-field class="mr-16 pt-14" appearance="outline">
+                <mat-label>Company name</mat-label>
+                <input [disabled]="loading" [(ngModel)]="company.name" matInput placeholder="Company name">
+            </mat-form-field>
+        </div>
+
+        <div>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>E-Mail</mat-label>
+                <input [disabled]="loading" [(ngModel)]="company.email" matInput placeholder="E-Mail">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Street + No.</mat-label>
+                <input [disabled]="loading" [(ngModel)]="company.street" matInput placeholder="Street + No.">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field class="mr-16" appearance="outline">
+                <mat-label>Zip code</mat-label>
+                <input [disabled]="loading" [(ngModel)]="company.zipcode" matInput placeholder="Zip code">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>City</mat-label>
+                <input [disabled]="loading" [(ngModel)]="company.city" matInput placeholder="City">
+            </mat-form-field>
+        </div>
+    </div>
+    <div mat-dialog-actions>
+        <button [disabled]="loading" mat-button (click)="dialogRef.close()">Cancel</button>
+        <button [disabled]="loading" mat-button (click)="saveCompany()" cdkFocusInitial>Save</button>
+    </div>
+</div>
