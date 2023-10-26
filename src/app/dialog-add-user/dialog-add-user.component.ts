@@ -1,8 +1,8 @@
-import { Component, OnInit, inject } from '@angular/core';
+// dialog-add-user.component.ts
+import { Component, OnInit } from '@angular/core';
 import { User } from 'src/models/user.class';
-import { Firestore, collectionData, collection, doc, setDoc, addDoc } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
 import { MatDialogRef } from '@angular/material/dialog';
+import { FirebaseService } from '../firebase.service';
 
 @Component({
   selector: 'app-dialog-add-user',
@@ -10,41 +10,32 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./dialog-add-user.component.scss']
 })
 export class DialogAddUserComponent implements OnInit {
-
-  firestore: Firestore = inject(Firestore);
-
   user = new User();
   birthDate!: Date;
   loading = false;
 
-  constructor(public dialogRef: MatDialogRef<DialogAddUserComponent>) { }
-  ngOnInit(): void {
+  constructor(public dialogRef: MatDialogRef<DialogAddUserComponent>, private firebaseService: FirebaseService) { }
 
+  ngOnInit(): void {
+    this.birthDate = new Date(); // Hier die Initialisierung der Geburtsdatums nach Bedarf ändern
   }
 
   saveUser() {
     this.loading = true;
     this.user.birthDate = this.birthDate.getTime();
-    console.log('Current user is ', this.user);
-
-    const userJson = this.user.toJSON();
-
-    const usersCollection = collection(this.firestore, 'users');
-
-    addDoc(usersCollection, userJson)
-      .then((result) => {
-        console.log('Adding user finished', result);
-
-        setTimeout(() => {
-          this.user = new User();
-          this.birthDate = new Date();
-          this.loading = false;
-        }, 200);
-
-        this.dialogRef.close();
+  
+    const userData = this.user.toJSON(); // Hier wird das User-Objekt in ein einfaches JavaScript-Objekt umgewandelt
+  
+    this.firebaseService.addElementFDB('users', userData)
+      .then(() => {
+        console.log('Adding user finished');
+        this.loading = false;
+        this.dialogRef.close(userData); // Dialog schließen und Benutzerdaten zurückgeben
       })
       .catch((error) => {
         console.error('Error adding user', error);
+        this.loading = false;
+        // Hier kannst du eine Fehlerbehandlung implementieren, wenn nötig
       });
   }
 }

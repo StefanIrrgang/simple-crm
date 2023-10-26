@@ -1,54 +1,55 @@
-import { Component, OnInit, inject } from '@angular/core';
+// user.component.ts
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.component';
 import { User } from 'src/models/user.class';
-import { Firestore, getFirestore, collection, query, onSnapshot, collectionData } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { FirebaseService } from '../firebase.service';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss']
 })
-export class UserComponent implements OnInit {
-
-  firestore: Firestore = inject(Firestore);
-
-  user = new User();
-  users!: Observable<User[]>; // Hinzugefügt für die Anzeige der Benutzer in der Komponente
+export class UserComponent implements OnInit, OnDestroy {
+  users$!: Observable<User[]>;
   allUsers: User[] = [];
+  userSubscription!: Subscription;
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private firebaseService: FirebaseService) { }
 
   ngOnInit(): void {
-    const firestore = getFirestore();
-
-    const q = query(collection(firestore, 'users'));
-
-    // Änderungen in Echtzeit abonnieren
-    this.users = collectionData(q, { idField: 'id' }) as Observable<User[]>;
-
-    onSnapshot(q, (querySnapshot) => {
-      // console.log('Received changes from DB ', querySnapshot);
-    
-      this.allUsers = [];
-    
-      querySnapshot.forEach((doc) => {
-        const userData = doc.data();
-        const userWithId = new User({ id: doc.id, ...userData });
-        this.allUsers.push(userWithId);
-      });
-    
-      // console.log('All users:', this.allUsers);
+    this.users$ = this.firebaseService.subList('users');
+    this.userSubscription = this.users$.subscribe(users => {
+      this.allUsers = users;
     });
   }
 
   openDialog() {
-    this.dialog.open(DialogAddUserComponent);
+    const dialogRef = this.dialog.open(DialogAddUserComponent);
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.firebaseService.addElementFDB('users', result)
+          .then(() => {
+            // Hier die id aus result extrahieren
+            const newUserId = result.id || 'unknown'; // Fallback für den Fall, dass id nicht vorhanden ist
+  
+            console.log('User added successfully with ID:', newUserId);
+          })
+          .catch(error => {
+            console.error('Error adding user', error);
+          });
+      }
+    });
   }
-
   formatBirthDate(milliseconds: number): string {
     const date = new Date(milliseconds);
-    return date.toLocaleDateString('en-US'); // Hier kannst du das Format nach Bedarf anpassen
+    return date.toLocaleDateString('en-US');
+  }
+
+  ngOnDestroy(): void {
+    // Abo aufräumen, um Memory Leaks zu vermeiden
+    this.userSubscription.unsubscribe();
   }
 }

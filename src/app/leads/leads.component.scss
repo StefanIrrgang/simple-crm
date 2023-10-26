@@ -1,0 +1,17 @@
+th {
+    text-align: left;
+}
+
+th,
+td {
+    padding: 10px;
+    /* Fügt mehr Platz zwischen den Zellen hinzu */
+    text-align: left;
+}
+
+table {
+    width: 100%;
+    /* Nimmt die gesamte Breite ein */
+    border-collapse: collapse;
+    /* Entfernt Abstände zwischen den Zellen */
+}

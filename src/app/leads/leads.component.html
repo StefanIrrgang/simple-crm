@@ -1,3 +1,28 @@
 <p>Leads</p>
-<p style="font-style: italic;">work in progress</p>
-
+<div>
+    <canvas id="myChart" width="400" height="200"></canvas>
+</div>
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Summe (€)</th>
+                <th>Zusätzlicher Betrag (€)</th>
+                <th>Aktionen</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of userData">
+                <td>{{ user.firstName }} {{ user.lastName }}</td>
+                <td>{{ user.summe | currency:'EUR':'symbol':'1.2-2' }}</td>
+                <td>
+                    <input type="number" [(ngModel)]="newAmount" placeholder="Neuer Betrag" />
+                </td>
+                <td>
+                    <button (click)="addAmount(user, newAmount)">Hinzufügen</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

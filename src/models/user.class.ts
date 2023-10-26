@@ -13,9 +13,9 @@ export class User {
         this.firstName = obj ? obj.firstName : '';
         this.lastName = obj ? obj.lastName : '';
         this.email = obj ? obj.email : '';
-        this.birthDate = obj ? obj.birthDate : '';
+        this.birthDate = obj ? Number(obj.birthDate) : 0;
         this.street = obj ? obj.street : '';
-        this.zipCode = obj ? obj.zipCode : '';
+        this.zipCode = obj ? Number(obj.zipCode) : 0;
         this.city = obj ? obj.city : '';
         this.id = obj ? obj.id : '';
     }
