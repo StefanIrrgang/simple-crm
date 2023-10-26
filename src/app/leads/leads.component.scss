@@ -15,3 +15,15 @@ table {
     border-collapse: collapse;
     /* Entfernt Abstände zwischen den Zellen */
 }
+
+.overlay {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 15px;
+    border-radius: 5px;
+    display: block;
+  }
+  
