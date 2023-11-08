@@ -54,7 +54,7 @@ export class LeadsComponent implements OnInit, OnDestroy {
         labels: labels,
         datasets: [
           {
-            label: 'Summe (€)',
+            label: 'Sum (€)',
             data: data,
             backgroundColor: 'rgba(75, 192, 192, 0.2)',
             borderColor: 'rgba(75, 192, 192, 1)',
@@ -94,7 +94,7 @@ export class LeadsComponent implements OnInit, OnDestroy {
     this.newAmounts[user.id] = null;
 
     this.showOverlay = true;
-    this.overlayMessage = 'Chart wurde aktualisiert';
+    this.overlayMessage = 'Chart updated';
 
     // Verstecke das Overlay nach 2 Sekunden
     setTimeout(() => {

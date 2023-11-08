@@ -8,9 +8,9 @@
         <thead>
             <tr>
                 <th>Name</th>
-                <th>Summe (€)</th>
-                <th>Zusätzlicher Betrag (€)</th>
-                <th>Aktionen</th>
+                <th>Sum (€)</th>
+                <th>Additional Value (€)</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -18,10 +18,10 @@
                 <td>{{ user.firstName }} {{ user.lastName }}</td>
                 <td>{{ user.summe | currency:'EUR':'symbol':'1.2-2' }}</td>
                 <td>
-                    <input type="number" [(ngModel)]="newAmounts[user.id]" placeholder="Neuer Betrag" />
+                    <input type="number" [(ngModel)]="newAmounts[user.id]" placeholder="Additional Value" />
                 </td>
                 <td>
-                    <button (click)="addAmount(user)">Hinzufügen</button>
+                    <button (click)="addAmount(user)">Add</button>
                 </td>
             </tr>
         </tbody>
