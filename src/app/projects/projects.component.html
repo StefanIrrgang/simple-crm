@@ -1,2 +1,18 @@
 <p>Projects</p>
-<p style="font-style: italic;">work in progress</p>
+
+
+<div class="overview-projects">
+    <a *ngFor="let project of allProjects" [routerLink]="['/project/' + project.id]" class="card">
+        <p>{{ project.title }}</p>
+        <p>Created by: {{ project.user }}</p>
+        <p class="content">{{ project.content }}</p>
+        <p>time required: {{ project.time }}</p>
+        <p>project volume €: {{ project.volume }}</p>
+        <p>priority: {{ project.priority }}</p>
+    </a>
+</div>
+
+<button (click)="openDialog()" class="add-project-btn" mat-fab color="primary" matTooltip="Add company"
+matTooltipPosition="above">
+<mat-icon>add</mat-icon>
+</button>
