@@ -35,6 +35,7 @@ import { OpportunitiesComponent } from './opportunities/opportunities.component'
 import { CalendarComponent } from './calendar/calendar.component';
 import { ReportsComponent } from './reports/reports.component';
 import { DialogAddCompanyComponent } from './dialog-add-company/dialog-add-company.component';
+import { TasksComponent } from './tasks/tasks.component';
 
 
 
@@ -54,7 +55,8 @@ import { DialogAddCompanyComponent } from './dialog-add-company/dialog-add-compa
     OpportunitiesComponent,
     CalendarComponent,
     ReportsComponent,
-    DialogAddCompanyComponent
+    DialogAddCompanyComponent,
+    TasksComponent
   ],
   imports: [
     BrowserModule,

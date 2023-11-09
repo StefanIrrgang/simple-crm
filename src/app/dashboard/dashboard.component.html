@@ -1,21 +1,42 @@
 <h2>Dashboard</h2>
 
+<div class="greeting">
+    <mat-card>
+        <mat-card-content>{{ greeting }}</mat-card-content>
+      </mat-card>
+      <mat-card>
+        <mat-card-content class="digital-clock">{{ currentTime }}</mat-card-content>
+      </mat-card>
+</div>
 
-<div class="dashboard-btn">
+<div class="overview-cards">
+    <a routerLink="/user" class="card"><p>Show all customers</p><mat-icon>person</mat-icon></a>
+    <a routerLink="/organizations" class="card"><p>Go to organizations</p><mat-icon>corporate_fare</mat-icon></a>
+    <a routerLink="/leads" class="card"><p>Current leads</p><mat-icon>leaderboard</mat-icon></a>
+    <a routerLink="/projects" class="card"><p>Latest projects</p><mat-icon>description</mat-icon></a>
+    <a routerLink="/tasks" class="card"><p>Current tasks</p><mat-icon>task</mat-icon></a>
+    <a routerLink="/opportunities" class="card"><p>Offers and opportunities</p><mat-icon>tune</mat-icon></a>
+    <a routerLink="/calendar" class="card"><p>Schedule and meetings</p><mat-icon>calendar_month</mat-icon></a> 
+    <a routerLink="/reports" class="card"><p>Reports and analyzes</p><mat-icon>receipt_long</mat-icon></a> 
+</div>
+
+
+<!-- display none added for testing -->
+<div class="dashboard-btn" style="display: none;">
     <button routerLink="/user" mat-raised-button>User</button>
-    <p>An overview of all customers and their contact details</p>
+    <!-- <p>An overview of all customers and their contact details</p> -->
     <button routerLink="/organizations" mat-raised-button>Organizations</button>
-    <p>An overview of all companies and their contact details</p>
+    <!-- <p>An overview of all companies and their contact details</p> -->
     <button routerLink="/leads" mat-raised-button>Leads</button>
-    <p>Visual overview of the leads and conversions generated in sepcific time periods</p>
+    <!-- <p>Visual overview of the leads and conversions generated in sepcific time periods</p> -->
     <button routerLink="/projects" mat-raised-button>Projects</button>
-    <p>Collection of all running projects as well as completed ones</p>
-    <button routerLink="/emails" mat-raised-button>Emails</button>
-    <p>Mailbox</p>
+    <!-- <p>Collection of all running projects as well as completed ones</p> -->
+    <button routerLink="/tasks" mat-raised-button>Tasks</button>
+    <!-- <p>Mailbox</p> -->
     <button routerLink="/opportunities" mat-raised-button>Opportunities</button>
-    <p>Summary of options and possibilities in current projects</p>
+    <!-- <p>Summary of options and possibilities in current projects</p> -->
     <button routerLink="/calendar" mat-raised-button>Calendar</button>
-    <p>Calender for schedule management</p>
+    <!-- <p>Calender for schedule management</p> -->
     <button routerLink="/reports" mat-raised-button>Reports</button>
-    <p>Informations about projects and important decisions</p>
+    <!-- <p>Informations about projects and important decisions</p> -->
 </div>

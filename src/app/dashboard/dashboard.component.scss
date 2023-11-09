@@ -1,7 +1,50 @@
 .dashboard-btn {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 2px;
+    justify-content: space-between;
+}
 
+.greeting {
+    display: flex;
+    justify-content: space-between;
+    font-size: large;
+    margin-bottom: 48px;
+    margin-top: 24px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+    .mat-mdc-card {
+        --mdc-elevated-card-container-color: rgb(236, 236, 236);
+        display: inline-block;
+    }
+}
+
+.overview-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 48px;
+}
+
+.card {
+    padding: 25px;
+    border-radius: 30px;
+    border-width: 2px;
+    border-color: green;
+    background: rgb(236, 236, 236);
+    flex: 0 0 200px;
+    text-align: center;
+    height: 100px;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 8px 4px #0000001A;
+    margin-bottom: 48px;
+    text-decoration: none;
+    color: black;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+    &:hover {
+        background-color: lightgray;
+    }
 }

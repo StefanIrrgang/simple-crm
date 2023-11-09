@@ -10,6 +10,7 @@ import { ReportsComponent } from './reports/reports.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { OpportunitiesComponent } from './opportunities/opportunities.component';
 import { EmailsComponent } from './emails/emails.component';
+import { TasksComponent } from './tasks/tasks.component';
 
 const routes: Routes = [
   {path: '', component: DashboardComponent},
@@ -23,6 +24,7 @@ const routes: Routes = [
   {path: 'opportunities', component: OpportunitiesComponent},
   {path: 'calendar', component: CalendarComponent},
   {path: 'reports', component: ReportsComponent},
+  {path: 'tasks', component: TasksComponent},
 ];
 
 @NgModule({
