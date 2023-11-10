@@ -8,7 +8,6 @@
                 <input [disabled]="loading" [(ngModel)]="project.title" matInput placeholder="Project name">
             </mat-form-field>
         </div>
-
         <div>
             <mat-form-field class="full-width" appearance="outline">
                 <mat-label>User</mat-label>
@@ -18,7 +17,25 @@
         <div>
             <mat-form-field class="full-width" appearance="outline">
                 <mat-label>Description</mat-label>
-                <input [disabled]="loading" [(ngModel)]="project.content" matInput placeholder="Description" style="min-height: 120px;">
+                <input [disabled]="loading" [(ngModel)]="project.content" matInput placeholder="Description" style="min-height: 100px;">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Time required</mat-label>
+                <input [disabled]="loading" [(ngModel)]="project.time" matInput placeholder="Time required">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Project volume</mat-label>
+                <input [disabled]="loading" [(ngModel)]="project.volume" matInput placeholder="Project volume">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Priority</mat-label>
+                <input [disabled]="loading" [(ngModel)]="project.priority" matInput placeholder="Priority">
             </mat-form-field>
         </div>
     </div>

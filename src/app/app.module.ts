@@ -37,6 +37,7 @@ import { ReportsComponent } from './reports/reports.component';
 import { DialogAddCompanyComponent } from './dialog-add-company/dialog-add-company.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { DialogAddProjectComponent } from './dialog-add-project/dialog-add-project.component';
+import { DialogAddTaskComponent } from './dialog-add-task/dialog-add-task.component';
 
 
 
@@ -58,7 +59,8 @@ import { DialogAddProjectComponent } from './dialog-add-project/dialog-add-proje
     ReportsComponent,
     DialogAddCompanyComponent,
     TasksComponent,
-    DialogAddProjectComponent
+    DialogAddProjectComponent,
+    DialogAddTaskComponent
   ],
   imports: [
     BrowserModule,

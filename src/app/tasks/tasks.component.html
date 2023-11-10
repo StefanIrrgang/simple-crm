@@ -1,1 +1,16 @@
-Tasks
+<p>Tasks</p>
+
+
+<div class="overview-tasks">
+    <a *ngFor="let task of allTasks" [routerLink]="['/project/' + task.id]" class="card">
+        <p>Task: {{ task.title }}</p>
+        <p class="content">Description: {{ task.content }}</p>
+        <p>Priority: {{ task.priority }}</p>
+    </a>
+</div>
+
+<button (click)="openDialog()" class="add-task-btn" mat-fab color="primary" matTooltip="Add company"
+matTooltipPosition="above">
+<mat-icon>add</mat-icon>
+</button>
+

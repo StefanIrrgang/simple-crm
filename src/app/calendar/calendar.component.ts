@@ -22,8 +22,12 @@ export class CalendarComponent implements OnInit, AfterViewInit {
       this.calendar = new Calendar(calendarEl, {
         plugins: [dayGridPlugin],
         events: [
-          { title: 'Team meeting', date: '2023-10-01' },
-          { title: 'Team meeting', date: '2023-10-15' },
+          { title: 'Team meeting', date: '2023-11-14' },
+          { title: 'Network meeting', date: '2023-11-21' },
+          { title: 'Team meeting', date: '2023-11-28' },
+          { title: 'Sales meeting', date: '2023-11-19' },
+          { title: 'Network meeting', date: '2023-12-13' },
+          { title: 'Logistics meeting', date: '2023-12-21' },
         ]
       });
 
