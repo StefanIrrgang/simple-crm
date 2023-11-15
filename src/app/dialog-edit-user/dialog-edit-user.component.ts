@@ -26,12 +26,11 @@ export class DialogEditUserComponent implements OnInit {
 
   }
 
-  async saveUser() {
+  async saveEditedUser() {
     this.loading = true;
     try {
       const userDocRef = doc(this.firestore, 'users', this.userId);
       await updateDoc(userDocRef, this.user.toJSON());
-      // console.log('User updated successfully');
       this.loading = false;
       this.dialogRef.close();
       this.eventService.triggerUserUpdated();

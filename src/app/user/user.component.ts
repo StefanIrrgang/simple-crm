@@ -32,9 +32,7 @@ export class UserComponent implements OnInit, OnDestroy {
       if (result) {
         this.firebaseService.addElementFDB('users', result)
           .then(() => {
-            // Hier die id aus result extrahieren
             const newUserId = result.id || 'unknown'; // Fallback für den Fall, dass id nicht vorhanden ist
-  
             console.log('User added successfully with ID:', newUserId);
           })
           .catch(error => {

@@ -6,6 +6,7 @@ export class User {
     street: string;
     zipCode: number;
     city: string;
+    summe: number;
     id: string;
 
     constructor(obj?:any) {
@@ -17,6 +18,7 @@ export class User {
         this.street = obj ? obj.street : '';
         this.zipCode = obj ? Number(obj.zipCode) : 0;
         this.city = obj ? obj.city : '';
+        this.summe = obj ? Number(obj.summe) : 0;
         this.id = obj ? obj.id : '';
     }
 
@@ -29,6 +31,7 @@ export class User {
             street: this.street,
             zipCode: this.zipCode,
             city: this.city,
+            summe: this.summe,
         };
     }
 }

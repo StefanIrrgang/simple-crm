@@ -23,19 +23,18 @@ export class DialogAddUserComponent implements OnInit {
   saveUser() {
     this.loading = true;
     this.user.birthDate = this.birthDate.getTime();
-  
+                                                    
     const userData = this.user.toJSON(); // Hier wird das User-Objekt in ein einfaches JavaScript-Objekt umgewandelt
   
     this.firebaseService.addElementFDB('users', userData)
       .then(() => {
         console.log('Adding user finished');
         this.loading = false;
-        this.dialogRef.close(userData); // Dialog schließen und Benutzerdaten zurückgeben
+        this.dialogRef.close(userData);
       })
       .catch((error) => {
         console.error('Error adding user', error);
         this.loading = false;
-        // Hier kannst du eine Fehlerbehandlung implementieren, wenn nötig
       });
   }
 }

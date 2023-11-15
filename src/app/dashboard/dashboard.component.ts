@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
+import { User } from 'src/models/user.class';
+import { FirebaseService } from '../firebase.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,8 +11,17 @@ import { Component, OnInit } from '@angular/core';
 export class DashboardComponent implements OnInit {
   currentTime: string = '';
   greeting: string = '';
+  users$!: Observable<User[]>;
+  userSubscription!: Subscription;
+  allUsers: User[] = [];
+
+  constructor(private firebaseService: FirebaseService) { }
 
   ngOnInit() {
+    this.users$ = this.firebaseService.subList('users');
+    this.userSubscription = this.users$.subscribe(users => {
+      this.allUsers = users;
+    });
     this.updateGreeting();
     this.updateTime();
     // Aktualisiere die Uhrzeit alle Sekunde
@@ -21,7 +33,7 @@ export class DashboardComponent implements OnInit {
   updateGreeting() {
     const currentHour = new Date().getHours();
     const currentDate = new Date();
-  
+
     if (currentHour >= 5 && currentHour < 12) {
       this.greeting = `Good morning, it's the ${currentDate.getDate()}th of ${this.getMonthName(currentDate.getMonth())} ${currentDate.getFullYear()}`;
     } else if (currentHour >= 12 && currentHour < 18) {
@@ -30,16 +42,16 @@ export class DashboardComponent implements OnInit {
       this.greeting = `Good evening, it's the ${currentDate.getDate()}th of ${this.getMonthName(currentDate.getMonth())} ${currentDate.getFullYear()}`;
     }
   }
-  
+
   getMonthName(month: number): string {
     const months = [
       'January', 'February', 'March', 'April', 'May', 'June',
       'July', 'August', 'September', 'October', 'November', 'December'
     ];
-  
+
     return months[month];
   }
-  
+
   updateTime() {
     const now = new Date();
     const hours = this.formatTimeUnit(now.getHours());
@@ -52,6 +64,4 @@ export class DashboardComponent implements OnInit {
   private formatTimeUnit(unit: number): string {
     return unit < 10 ? `0${unit}` : `${unit}`;
   }
-  
-
 }
