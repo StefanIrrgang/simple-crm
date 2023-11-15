@@ -2,6 +2,7 @@
 import { Injectable } from '@angular/core';
 import { Firestore, collection, onSnapshot, QuerySnapshot, DocumentData, DocumentReference, addDoc, updateDoc, deleteDoc, getDocs, doc, setDoc, collectionData, query } from '@angular/fire/firestore';
 import { Observable, Subject } from 'rxjs';
+import { User } from 'src/models/user.class';
 
 @Injectable({
   providedIn: 'root',
@@ -101,5 +102,10 @@ export class FirebaseService {
     const userRef = doc(this.firestore, 'users', userId);
 
     return updateDoc(userRef, { summe: newSum });
+  }
+
+  getUsersWithIDs(): Observable<User[]> {
+    const q = query(collection(this.firestore, 'users'));
+    return collectionData(q, { idField: 'id' }) as Observable<User[]>;
   }
 }

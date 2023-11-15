@@ -14,6 +14,8 @@ export class DashboardComponent implements OnInit {
   greeting: string = '';
   users$!: Observable<User[]>;
   companies$!: Observable<Company[]>;
+  projects$!: Observable<Company[]>;
+  tasks$!: Observable<Company[]>;
   userSubscription!: Subscription;
   allUsers: User[] = [];
 
@@ -22,6 +24,8 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.users$ = this.firebaseService.subList('users');
     this.companies$ = this.firebaseService.subList('companies');
+    this.projects$ = this.firebaseService.subList('projects');
+    this.tasks$ = this.firebaseService.subList('tasks');
     this.userSubscription = this.users$.subscribe(users => {
       this.allUsers = users;
     });

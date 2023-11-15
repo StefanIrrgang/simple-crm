@@ -10,14 +10,21 @@
 </div>
 
 <div class="overview-cards">
-    <a routerLink="/user" class="card"><p>Show all contacts</p><mat-icon>person</mat-icon><p class="dynamic-info">Total Users: {{ (users$ | async)?.length }}</p></a>
-    <a routerLink="/organizations" class="card"><p>Go to organizations</p><mat-icon>corporate_fare</mat-icon><p class="dynamic-info">Total Companies: {{ (companies$ | async)?.length }}</p></a>
+    <a routerLink="/user" class="card"><p>Show all contacts</p><mat-icon>person</mat-icon></a>
+    <a routerLink="/organizations" class="card"><p>Go to organizations</p><mat-icon>corporate_fare</mat-icon></a>
     <a routerLink="/leads" class="card"><p>Current leads</p><mat-icon>leaderboard</mat-icon></a>
     <a routerLink="/projects" class="card"><p>Newest projects</p><mat-icon>description</mat-icon></a>
     <a routerLink="/tasks" class="card"><p>Current tasks</p><mat-icon>task</mat-icon></a>
     <!-- <a routerLink="/opportunities" class="card"><p>Offers and opportunities</p><mat-icon>tune</mat-icon></a> -->
     <a routerLink="/calendar" class="card"><p>Schedule and meetings</p><mat-icon>calendar_month</mat-icon></a> 
     <!-- <a routerLink="/reports" class="card"><p>Reports and analyzes</p><mat-icon>receipt_long</mat-icon></a>  -->
+</div>
+
+<div class="overview-info">
+  <div class="live-info">Total Users: {{ (users$ | async)?.length }}</div>
+  <div class="live-info">Total Companies: {{ (companies$ | async)?.length }}</div>
+  <div class="live-info">Values</div>
+  <div class="live-info"><p>Upcoming Projects: {{ (projects$ | async)?.length }}</p><p>Running Tasks: {{ (tasks$ | async)?.length }}</p></div>
 </div>
 
 
