@@ -27,17 +27,18 @@ export class UserComponent implements OnInit, OnDestroy {
 
   openDialog() {
     const dialogRef = this.dialog.open(DialogAddUserComponent);
-  
+
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.firebaseService.addElementFDB('users', result)
-          .then(() => {
-            const newUserId = result.id || 'unknown'; // Fallback für den Fall, dass id nicht vorhanden ist
-            console.log('User added successfully with ID:', newUserId);
-          })
-          .catch(error => {
-            console.error('Error adding user', error);
-          });
+        // this.firebaseService.addElementFDB('users', result)
+        //   .then(() => {
+        //     const newUserId = result.id || 'unknown'; 
+        //     console.log('User added successfully with ID:', newUserId);
+        //   })
+        //   .catch(error => {
+        //     console.error('User was added with saveUser in Dialog', error);
+        //   });
+        console.log('User added successfully with saveUser in Dialog');
       }
     });
   }

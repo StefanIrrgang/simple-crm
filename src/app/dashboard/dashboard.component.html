@@ -11,7 +11,7 @@
 
 <div class="overview-cards">
     <a routerLink="/user" class="card"><p>Show all contacts</p><mat-icon>person</mat-icon><p class="dynamic-info">Total Users: {{ (users$ | async)?.length }}</p></a>
-    <a routerLink="/organizations" class="card"><p>Go to organizations</p><mat-icon>corporate_fare</mat-icon></a>
+    <a routerLink="/organizations" class="card"><p>Go to organizations</p><mat-icon>corporate_fare</mat-icon><p class="dynamic-info">Total Companies: {{ (companies$ | async)?.length }}</p></a>
     <a routerLink="/leads" class="card"><p>Current leads</p><mat-icon>leaderboard</mat-icon></a>
     <a routerLink="/projects" class="card"><p>Newest projects</p><mat-icon>description</mat-icon></a>
     <a routerLink="/tasks" class="card"><p>Current tasks</p><mat-icon>task</mat-icon></a>

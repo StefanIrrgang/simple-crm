@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { User } from 'src/models/user.class';
+import { Company } from 'src/models/company.class';
 import { FirebaseService } from '../firebase.service';
 
 @Component({
@@ -12,6 +13,7 @@ export class DashboardComponent implements OnInit {
   currentTime: string = '';
   greeting: string = '';
   users$!: Observable<User[]>;
+  companies$!: Observable<Company[]>;
   userSubscription!: Subscription;
   allUsers: User[] = [];
 
@@ -19,6 +21,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.users$ = this.firebaseService.subList('users');
+    this.companies$ = this.firebaseService.subList('companies');
     this.userSubscription = this.users$.subscribe(users => {
       this.allUsers = users;
     });
