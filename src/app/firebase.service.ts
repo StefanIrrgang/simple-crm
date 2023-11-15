@@ -45,17 +45,31 @@ export class FirebaseService {
     });
   }
 
-  async addElementFDB(ColID: string, item: {}) {
-    const docRef = doc(this.getRef(ColID));
+  // async addElementFDB(ColID: string, item: {}) {
+  //   const docRef = doc(this.getRef(ColID));
   
-    await setDoc(docRef, item)
-      .catch((err) => {
-        console.error(err);
-      })
-      .then(() => {
-        console.log('Document written with ID: ', docRef.id);
-      });
+  //   await setDoc(docRef, item)
+  //     .catch((err) => {
+  //       console.error(err);
+  //     })
+  //     .then(() => {
+  //       console.log('Document written with ID: ', docRef.id);
+  //     });
+  // }
+
+  async addElementFDB(ColID: string, item: {}): Promise<string> {
+    const docRef = doc(this.getRef(ColID));
+    
+    try {
+      await setDoc(docRef, item);
+      console.log('Document written with ID: ', docRef.id);
+      return docRef.id;
+    } catch (err) {
+      console.error(err);
+      throw err;
+    }
   }
+  
 
   async updateElementFDB(ColID: string, DocID: string, item: {}): Promise<void> {
     await updateDoc(this.getSingelDocRef(ColID, DocID), item);

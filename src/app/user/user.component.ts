@@ -30,18 +30,19 @@ export class UserComponent implements OnInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        // this.firebaseService.addElementFDB('users', result)
-        //   .then(() => {
-        //     const newUserId = result.id || 'unknown'; 
-        //     console.log('User added successfully with ID:', newUserId);
-        //   })
-        //   .catch(error => {
-        //     console.error('User was added with saveUser in Dialog', error);
-        //   });
-        console.log('User added successfully with saveUser in Dialog');
+        this.firebaseService.addElementFDB('users', result)
+        .then((newUserId) => {
+          console.log('User added successfully with ID:', newUserId);
+          // Hier kannst du die ID an die result-Variable übergeben
+          result.id = newUserId;
+        })
+          .catch(error => {
+            console.error('User was added with saveUser in Dialog', error);
+          });
       }
     });
   }
+
   formatBirthDate(milliseconds: number): string {
     const date = new Date(milliseconds);
     return date.toLocaleDateString('en-US');

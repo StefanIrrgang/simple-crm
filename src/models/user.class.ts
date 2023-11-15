@@ -19,7 +19,7 @@ export class User {
         this.zipCode = obj ? Number(obj.zipCode) : 0;
         this.city = obj ? obj.city : '';
         this.summe = obj ? Number(obj.summe) : 0;
-        this.id = obj ? obj.id : '';
+        this.id = obj && obj.id ? obj.id : '';
     }
 
     public toJSON() {
@@ -32,6 +32,7 @@ export class User {
             zipCode: this.zipCode,
             city: this.city,
             summe: this.summe,
+            id: this.id,
         };
     }
 }
