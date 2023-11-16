@@ -43,8 +43,10 @@
     <ngx-charts-pie-chart [results]="getChartData(companiesData.length)" [view]="[120, 120]"
       [labels]="false"></ngx-charts-pie-chart>
   </div>
-  <div class="live-info">
-    <p>Values</p>
+  <div class="live-info value">
+    <p>Current Lead Values</p>
+    <p style="color: #3f51b5; font-weight: bold;">{{ currentUser?.firstName }} {{ currentUser?.lastName }}</p>
+    <p style="color: #3f51b5; font-weight: bold;">Sum: {{ currentUser?.summe }} €</p>
   </div>
   <div class="live-info split">
     <div *ngIf="(projects$ | async) as projectsData">

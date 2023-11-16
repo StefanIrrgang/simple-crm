@@ -110,6 +110,11 @@
     margin-top: 0 !important;
 }
 
+.value{
+    gap: 20px;
+    justify-content: flex-start;
+}
+
 @media screen and (min-width: 1921px) {
     .greeting, .overview-cards, .overview-info {
         max-width: 1920px;

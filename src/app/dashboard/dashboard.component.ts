@@ -19,6 +19,9 @@ export class DashboardComponent implements OnInit {
   userSubscription!: Subscription;
   allUsers: User[] = [];
 
+  currentUserIdIndex = 0;
+  currentUser: User | undefined;
+
   constructor(private firebaseService: FirebaseService) { }
 
   ngOnInit() {
@@ -35,6 +38,9 @@ export class DashboardComponent implements OnInit {
     setInterval(() => {
       this.updateTime();
     }, 1000);
+    setInterval(() => {
+      this.updateCurrentUser();
+    }, 3000);
   }
 
   updateGreeting() {
@@ -86,6 +92,14 @@ export class DashboardComponent implements OnInit {
         value: remainingUsers,
       },
     ];
+  }
+  
+  updateCurrentUser() {
+    if (this.allUsers.length > 0) {
+      this.currentUser = this.allUsers[this.currentUserIdIndex];
+      console.log(`Current User: ${this.currentUser?.firstName} ${this.currentUser?.lastName}, Sum: ${this.currentUser?.summe}`);
+      this.currentUserIdIndex = (this.currentUserIdIndex + 1) % this.allUsers.length;
+    }
   }
   
 }
