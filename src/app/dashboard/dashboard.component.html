@@ -1,49 +1,61 @@
 <h2>Dashboard</h2>
 
 <div class="greeting">
-    <mat-card>
-        <mat-card-content>{{ greeting }}</mat-card-content>
-      </mat-card>
-      <mat-card>
-        <mat-card-content class="digital-clock">{{ currentTime }}</mat-card-content>
-      </mat-card>
+  <mat-card>
+    <mat-card-content>{{ greeting }}</mat-card-content>
+  </mat-card>
+  <mat-card>
+    <mat-card-content class="digital-clock">{{ currentTime }}</mat-card-content>
+  </mat-card>
 </div>
 
 <div class="overview-cards">
-    <a routerLink="/user" class="card"><p>Show all contacts</p><mat-icon>person</mat-icon></a>
-    <a routerLink="/organizations" class="card"><p>Go to organizations</p><mat-icon>corporate_fare</mat-icon></a>
-    <a routerLink="/leads" class="card"><p>Current leads</p><mat-icon>leaderboard</mat-icon></a>
-    <a routerLink="/projects" class="card"><p>Newest projects</p><mat-icon>description</mat-icon></a>
-    <a routerLink="/tasks" class="card"><p>Current tasks</p><mat-icon>task</mat-icon></a>
-    <!-- <a routerLink="/opportunities" class="card"><p>Offers and opportunities</p><mat-icon>tune</mat-icon></a> -->
-    <a routerLink="/calendar" class="card"><p>Schedule and meetings</p><mat-icon>calendar_month</mat-icon></a> 
-    <!-- <a routerLink="/reports" class="card"><p>Reports and analyzes</p><mat-icon>receipt_long</mat-icon></a>  -->
+  <a routerLink="/user" class="card">
+    <p>Show all contacts</p><mat-icon>person</mat-icon>
+  </a>
+  <a routerLink="/organizations" class="card">
+    <p>Go to organizations</p><mat-icon>corporate_fare</mat-icon>
+  </a>
+  <a routerLink="/leads" class="card">
+    <p>Current leads</p><mat-icon>leaderboard</mat-icon>
+  </a>
+  <a routerLink="/projects" class="card">
+    <p>Newest projects</p><mat-icon>description</mat-icon>
+  </a>
+  <a routerLink="/tasks" class="card">
+    <p>Current tasks</p><mat-icon>task</mat-icon>
+  </a>
+  <!-- <a routerLink="/opportunities" class="card"><p>Offers and opportunities</p><mat-icon>tune</mat-icon></a> -->
+  <a routerLink="/calendar" class="card">
+    <p>Schedule and meetings</p><mat-icon>calendar_month</mat-icon>
+  </a>
+  <!-- <a routerLink="/reports" class="card"><p>Reports and analyzes</p><mat-icon>receipt_long</mat-icon></a>  -->
 </div>
 
 <div class="overview-info">
-  <div class="live-info">Total Users: {{ (users$ | async)?.length }}</div>
-  <div class="live-info">Total Companies: {{ (companies$ | async)?.length }}</div>
-  <div class="live-info">Values</div>
-  <div class="live-info"><p>Upcoming Projects: {{ (projects$ | async)?.length }}</p><p>Running Tasks: {{ (tasks$ | async)?.length }}</p></div>
-</div>
-
-
-<!-- display none added for testing -->
-<div class="dashboard-btn" style="display: none;">
-    <button routerLink="/user" mat-raised-button>User</button>
-    <!-- <p>An overview of all customers and their contact details</p> -->
-    <button routerLink="/organizations" mat-raised-button>Organizations</button>
-    <!-- <p>An overview of all companies and their contact details</p> -->
-    <button routerLink="/leads" mat-raised-button>Leads</button>
-    <!-- <p>Visual overview of the leads and conversions generated in sepcific time periods</p> -->
-    <button routerLink="/projects" mat-raised-button>Projects</button>
-    <!-- <p>Collection of all running projects as well as completed ones</p> -->
-    <button routerLink="/tasks" mat-raised-button>Tasks</button>
-    <!-- <p>Mailbox</p> -->
-    <!-- <button routerLink="/opportunities" mat-raised-button>Opportunities</button> -->
-    <!-- <p>Summary of options and possibilities in current projects</p> -->
-    <button routerLink="/calendar" mat-raised-button>Calendar</button>
-    <!-- <p>Calender for schedule management</p> -->
-    <!-- <button routerLink="/reports" mat-raised-button>Reports</button> -->
-    <!-- <p>Informations about projects and important decisions</p> -->
+  <div class="live-info" *ngIf="(users$ | async) as usersData">
+    <p>Total Users: {{ (users$ | async)?.length }}</p>
+    <ngx-charts-pie-chart [results]="getChartData(usersData.length)" [view]="[120, 120]"
+      [labels]="false"></ngx-charts-pie-chart>
+  </div>
+  <div class="live-info" *ngIf="(companies$ | async) as companiesData">
+    <p>Total Companies: {{ (companies$ | async)?.length }}</p>
+    <ngx-charts-pie-chart [results]="getChartData(companiesData.length)" [view]="[120, 120]"
+      [labels]="false"></ngx-charts-pie-chart>
+  </div>
+  <div class="live-info">
+    <p>Values</p>
+  </div>
+  <div class="live-info split">
+    <div *ngIf="(projects$ | async) as projectsData">
+    <p>Upcoming Projects: {{ (projects$ | async)?.length }}</p>
+    <ngx-charts-pie-chart [results]="getChartData(projectsData.length)" [view]="[105, 105]"
+      [labels]="false"></ngx-charts-pie-chart>
+    </div>
+    <div *ngIf="(tasks$ | async) as tasksData">
+    <p>Running Tasks: {{ (tasks$ | async)?.length }}</p>
+    <ngx-charts-pie-chart [results]="getChartData(tasksData.length)" [view]="[105, 105]"
+      [labels]="false"></ngx-charts-pie-chart>
+    </div>
+  </div>
 </div>

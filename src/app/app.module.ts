@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -38,8 +37,7 @@ import { DialogAddCompanyComponent } from './dialog-add-company/dialog-add-compa
 import { TasksComponent } from './tasks/tasks.component';
 import { DialogAddProjectComponent } from './dialog-add-project/dialog-add-project.component';
 import { DialogAddTaskComponent } from './dialog-add-task/dialog-add-task.component';
-
-
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
   declarations: [
@@ -82,6 +80,7 @@ import { DialogAddTaskComponent } from './dialog-add-task/dialog-add-task.compon
     MatProgressBarModule,
     MatCardModule,
     MatMenuModule,
+    NgxChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

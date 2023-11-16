@@ -71,4 +71,21 @@ export class DashboardComponent implements OnInit {
   private formatTimeUnit(unit: number): string {
     return unit < 10 ? `0${unit}` : `${unit}`;
   }
+
+  getChartData(usersCount: number): any[] {
+    const maxUsers = 25;
+    const remainingUsers = maxUsers - usersCount;
+  
+    return [
+      {
+        name: 'Users',
+        value: usersCount,
+      },
+      {
+        name: 'Remaining',
+        value: remainingUsers,
+      },
+    ];
+  }
+  
 }

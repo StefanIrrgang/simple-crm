@@ -76,7 +76,7 @@
     background: #b8bfe5;
     flex: 0 0 200px;
     text-align: center;
-    height: 80px;
+    height: 100px;
     width: 30%;
     display: flex;
     flex-direction: column;
@@ -97,6 +97,17 @@
         font-size: 12px;
 
     }
+
+    p{
+        margin-bottom: 0;
+    }
+}
+
+.split {
+    display: flex;
+    flex-direction: row !important;
+    align-items: center !important;
+    margin-top: 0 !important;
 }
 
 @media screen and (min-width: 1921px) {
