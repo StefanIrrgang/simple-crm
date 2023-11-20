@@ -46,7 +46,6 @@ export class UserDetailComponent implements OnInit {
     }
   }
 
-
   editMenu() {
     const dialog = this.dialog.open(DialogEditAddressComponent);
     dialog.componentInstance.user = new User(this.user.toJSON());
@@ -58,5 +57,4 @@ export class UserDetailComponent implements OnInit {
     dialog.componentInstance.user = new User(this.user.toJSON());
     dialog.componentInstance.userId = this.userId;
   }
-
 }
